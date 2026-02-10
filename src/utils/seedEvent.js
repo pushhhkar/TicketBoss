@@ -1,25 +1,26 @@
 const Event = require("../models/Event");
 
+const EVENT_ID = "node-meetup-2025";
+
 const seedEvent = async () => {
   try {
-    const existingEvent = await Event.findOne({
-      eventId: "node-meetup-2025"
-    });
+    const existingEvent = await Event.findOne({ eventId: EVENT_ID });
 
     if (!existingEvent) {
       await Event.create({
-        eventId: "node-meetup-2025",
+        eventId: EVENT_ID,
         name: "Node.js Meet-up",
         totalSeats: 500,
         availableSeats: 500,
         version: 0
       });
 
-      console.log("Event seeded");
+      console.log("Event seeded successfully");
     }
   } catch (err) {
-    console.log("Error seeding event", err.message);
+    console.error("Error seeding event:", err);
   }
 };
 
 module.exports = seedEvent;
+
